@@ -1,0 +1,4 @@
+[{"action": "comprar flores", "done": false},
+{"action": "buscar tickets flores", "done": false},
+{"action": "salir a correr", "done": true},
+{"action": "ir a trabajar", "done": false}]
