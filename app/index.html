@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> 
-<html lang="en" ng-app="todoApp" class="no-js"> <!--<![endif]-->
+<html lang="en"  class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,9 +29,9 @@
         <!-- In production use:
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
         -->
-        <div class="container" ng-controller="ToDoCtrl">
+<!--        <div class="container" ng-controller="ToDoCtrl">
             <div class="page-header" >
-                <h1 style="font-size: 33px;">{{todo.user}} ¿Qué tenes que hacer? 
+                <h1 style="font-size: 33px;" class="text-center">{{todo.user}} ¿Qué tenes que hacer? 
                     <span class="label label-primary" ng-hide="incompleteCount() == 0" ng-class="warningLevel()">
                         {{incompleteCount()}}
                     </span>
@@ -39,7 +39,7 @@
             </div>
             <div class="panel">
                 <div class="input-group">
-                    <input class="form-control" ng-model="agregarItem">
+                    <input class="form-control" ng-model="agregarItem" required="" >
                     <span class="input-group-btn">
                         <button class="btn btn-default" ng-click="addNewItem(agregarItem)">Agregar</button>
                     </span>
@@ -62,55 +62,70 @@
                     <label><input type="checkbox" ng-model="showComplete" />Mostrar Actividades terminadas</label>
                 </div>
             </div>
-        </div>
+        </div>-->
         <script src="angular.js"></script>
         <script>
-                                //creo un objeto JSON llamado model
-                                var model = {
-                                    user: "Franco"
-                                    
-                                };
-                                //Creo app, debe hacer match con el ng-app=""
-                                var todoApp = angular.module('todoApp', []);
-                                
-                                todoApp.run(function ($http) {
-                                    $http.get("todo.json").success(function (data) {
-                                        model.items = data;
-                                    });
+//                                //creo un objeto JSON llamado model
+//                                var model = {
+//                                    user: "Franco"
+//                                    
+//                                };
+//                                //Creo app, debe hacer match con el ng-app=""
+//                                var todoApp = angular.module('todoApp', []);
+//                                
+//                                todoApp.run(function ($http) {
+//                                    $http.get("todo.json").success(function (data) {
+//                                        model.items = data;
+//                                    });
+//                                });
+//
+//                                todoApp.filter("checkedItems", function () {
+//                                    return function (items, showComplete) {
+//                                        var resultArray = [];
+//                                        angular.forEach(items, function (item) {
+//                                            if (item.done === false || showComplete === true) {
+//                                                resultArray.push(item);
+//                                            }
+//                                        });
+//                                        return resultArray;
+//                                    }
+//                                });
+//
+//                                //Creo controlador de la app
+//                                todoApp.controller("ToDoCtrl", function ($scope) {
+//                                    //al Objeto JSON creado llamado model se lo asigno a todo                    
+//                                    $scope.todo = model;
+//                                    $scope.incompleteCount = function () {
+//                                        var count = 0;
+//                                        angular.forEach($scope.todo.items, function (item) {
+//                                            if (!item.done) {
+//                                                count++;
+//                                            }
+//                                        });
+//                                        return count;
+//                                    }//termina incompleteCount
+//                                    $scope.warningLevel = function () {
+//                                        return $scope.incompleteCount() < 3 ? "label-sucess" : "label-warning";
+//                                    }//termina warining
+//                                    $scope.addNewItem = function (agregarItem) {
+//                                        return $scope.todo.items.push({action: agregarItem, done: false});
+//                                    }
+//                                });
+                                var myData = {
+                                name: "Franco",
+                                        weather: "sunny",
+                                        printMessage = function () {
+                                        console.log('hola '.this.name.'.');
+                                                console.log('El clima esta '.this.weather.'.'); }};
+                                for (prop in myData){
+                        console.log('Nombre: '.prop.'. Valor: '.myData['prop']);
+                        }
+                        console.log('---');
+                                angular.forEach(myData, function (value, key) {
+                                console.log('Nombre: '.key.'. Valor: '.value.'.');
                                 });
 
-                                todoApp.filter("checkedItems", function () {
-                                    return function (items, showComplete) {
-                                        var resultArray = [];
-                                        angular.forEach(items, function (item) {
-                                            if (item.done === false || showComplete === true) {
-                                                resultArray.push(item);
-                                            }
-                                        });
-                                        return resultArray;
-                                    }
-                                });
 
-                                //Creo controlador de la app
-                                todoApp.controller("ToDoCtrl", function ($scope) {
-                                    //al Objeto JSON creado llamado model se lo asigno a todo                    
-                                    $scope.todo = model;
-                                    $scope.incompleteCount = function () {
-                                        var count = 0;
-                                        angular.forEach($scope.todo.items, function (item) {
-                                            if (!item.done) {
-                                                count++;
-                                            }
-                                        });
-                                        return count;
-                                    }//termina incompleteCount
-                                    $scope.warningLevel = function () {
-                                        return $scope.incompleteCount() < 3 ? "label-sucess" : "label-warning";
-                                    }//termina warining
-                                    $scope.addNewItem = function (agregarItem) {
-                                        return $scope.todo.items.push({action: agregarItem, done: false});
-                                    }
-                                });
         </script>
     </body>
 </html>
